@@ -5,10 +5,22 @@ import WordEntry from './component/WordEntry'
 
 function App() {
   const [wordGuess, setWordGuess] = useState('')
+  const [evaluate, setEvaluate] = useState(false)
+
+  const handleGuessCompletion = (guess: string): void => {
+    setEvaluate(true)
+  }
+
   return (
     <div>
-      <WordEntry onGuessEntered={(guess) => setWordGuess(guess)} />
-      <Word isWordEvaluated={false} guessWordValue={wordGuess} />
+      <WordEntry
+        onGuessEntered={(guess) => setWordGuess(guess)} 
+        onGuessComplete={() => handleGuessCompletion(wordGuess)}
+      />
+      <Word
+        isWordEvaluated={evaluate}
+        guessWordValue={wordGuess}
+      />
     </div>
   )
 }
