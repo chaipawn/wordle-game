@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react'
 import Letter from '../Letter'
 import { AccuracyEnum } from "../../core/AccuracyEnum"
 import { evaluateWordScore } from '../../core/Evaluation'
+import { retrieveAnswer } from '../../core/AnswerRetriever'
 
 interface WordProps {
     isWordEvaluated: boolean
     guessWordValue: string
 }
-
-const retrieveAnswer = ():string => { return 'react'}
 
 const Word = ({ isWordEvaluated, guessWordValue }: WordProps) => {
     const inititalAccuracyArray = [

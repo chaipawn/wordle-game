@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import WordBoard from './component/WordBoard'
 import WordEntry from './component/WordEntry'
-
-const retrieveAnswer = ():string => { return 'react'}
+import { retrieveAnswer } from './core/AnswerRetriever'
 
 function App() {
   const [wordGuess, setWordGuess] = useState('')
