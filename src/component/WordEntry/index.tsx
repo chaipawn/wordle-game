@@ -34,9 +34,9 @@ const WordEntry = ({ onGuessEntered, onGuessComplete }: WordEntryProps) => {
     }
 
     return (
-        <div>
+        <div className="flex">
             <input
-                className="m-1 rounded-lg w-60 h-7 block border-2 border-solid border-blue-500 focus:outline-none focus:shadow-sm focus:shadow-blue-500"
+                className="m-1 p-1 rounded-lg w-72 h-10 block border-2 border-solid border-blue-500 focus:outline-none focus:shadow-sm focus:shadow-blue-500"
                 autoFocus
                 placeholder="Enter your guess..."
                 value={value}
@@ -45,15 +45,13 @@ const WordEntry = ({ onGuessEntered, onGuessComplete }: WordEntryProps) => {
                 onChange={(e) => handleLetterEntry(e)}
                 onKeyPress={(e) => handleEnterPressed(e)}
             />
-            {
-                (value.length !== 5) ? '' :
-                <button
-                    className="w-20 h-10 bg-red-800 text-white, rounded-md m-4 relative top-2"
-                    onClick={handleGuessComplete}
-                >
-                    Guess
-                </button>
-            }
+            <button
+                className="w-20 h-10 bg-red-800 text-white rounded-md m-1"
+                disabled={value.length !== 5}
+                onClick={handleGuessComplete}
+            >
+                Guess
+            </button>
         </div>
     )
 }

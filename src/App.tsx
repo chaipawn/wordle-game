@@ -27,9 +27,9 @@ function App() {
     }
 
     if (winning) {
-      setGameOverText('You Won!!')
+      setGameOverText('🏆 You Won!! 🎉')
     } else if (winning === false) {
-      setGameOverText(`Word: ${retrieveAnswer().toUpperCase()}`)
+      setGameOverText(`Word: ${retrieveAnswer().toUpperCase()} 😭`)
     }
   }, [winning])
 
@@ -40,21 +40,23 @@ function App() {
   }, [nextGuessPosition])
 
   return (
-    <div>
-      { gameOver ?
-        <div className="w-64 h-10 text-center text-2xl">
-          {gameOverText}
-        </div>
-        :
-        <WordEntry
-          onGuessEntered={(guess) => setWordGuess(guess)} 
-          onGuessComplete={() => handleGuessCompletion(wordGuess)}
+    <div className="grid h-screen place-items-center">
+      <div className="">
+        { gameOver ?
+          <div className="w-72 h-10 text-center text-2xl">
+            {gameOverText}
+          </div>
+          :
+          <WordEntry
+            onGuessEntered={(guess) => setWordGuess(guess)} 
+            onGuessComplete={() => handleGuessCompletion(wordGuess)}
+          />
+        }
+        <WordBoard
+          guess={wordGuess}
+          currentPosition={nextGuessPosition}
         />
-      }
-      <WordBoard
-        guess={wordGuess}
-        currentPosition={nextGuessPosition}
-      />
+      </div>
     </div>
   )
 }
