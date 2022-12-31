@@ -1,25 +1,60 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
-import Word from './component/Word'
+import WordBoard from './component/WordBoard'
 import WordEntry from './component/WordEntry'
+
+const retrieveAnswer = ():string => { return 'react'}
 
 function App() {
   const [wordGuess, setWordGuess] = useState('')
-  const [evaluate, setEvaluate] = useState(false)
+  const [nextGuessPosition, setNextGuessPosition] = useState(0)
+  const [winning, setWinning] = useState<boolean | null>(null)
+  const [gameOver, setGameOver] = useState(false)
+  const [gameOverText, setGameOverText] = useState('')
 
   const handleGuessCompletion = (guess: string): void => {
-    setEvaluate(true)
+    if (wordGuess === retrieveAnswer().toUpperCase()) {
+      setWinning(true)
+      return
+    }
+
+    setNextGuessPosition(nextGuessPosition + 1)
   }
+
+  useEffect(() => {
+    if (winning != null) {
+      setNextGuessPosition(0)
+      setGameOver(true)
+    }
+
+    if (winning) {
+      setGameOverText('You Won!!')
+    } else if (winning === false) {
+      setGameOverText(`Word: ${retrieveAnswer().toUpperCase()}`)
+    }
+  }, [winning])
+
+  useEffect(() => {
+    if (nextGuessPosition === 6) {
+      setWinning(false)
+    }
+  }, [nextGuessPosition])
 
   return (
     <div>
-      <WordEntry
-        onGuessEntered={(guess) => setWordGuess(guess)} 
-        onGuessComplete={() => handleGuessCompletion(wordGuess)}
-      />
-      <Word
-        isWordEvaluated={evaluate}
-        guessWordValue={wordGuess}
+      { gameOver ?
+        <div className="w-64 h-10 text-center text-2xl">
+          {gameOverText}
+        </div>
+        :
+        <WordEntry
+          onGuessEntered={(guess) => setWordGuess(guess)} 
+          onGuessComplete={() => handleGuessCompletion(wordGuess)}
+        />
+      }
+      <WordBoard
+        guess={wordGuess}
+        currentPosition={nextGuessPosition}
       />
     </div>
   )

@@ -49,7 +49,7 @@ const WordEntry = ({ onGuessEntered, onGuessComplete }: WordEntryProps) => {
                 (value.length !== 5) ? '' :
                 <button
                     className="w-20 h-10 bg-red-800 text-white, rounded-md m-4 relative top-2"
-                    onClick={onGuessComplete}
+                    onClick={handleGuessComplete}
                 >
                     Guess
                 </button>

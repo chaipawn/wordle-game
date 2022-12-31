@@ -23,7 +23,7 @@ const Word = ({ isWordEvaluated, guessWordValue }: WordProps) => {
     const [guessValue, setGuessValue] = useState('')
 
     useEffect(() => {
-        setGuessValue(guessWordValue.padEnd(5,'.'))},
+        setGuessValue(guessWordValue.padEnd(5,'_'))},
         [guessWordValue]
     ) 
 
