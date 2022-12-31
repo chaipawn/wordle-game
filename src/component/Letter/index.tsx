@@ -1,9 +1,4 @@
-export enum AccuracyEnum {
-    correct,
-    wrongPosition,
-    doesNotExist,
-    none
-}
+import { AccuracyEnum } from "../../core/AccuracyEnum"
 
 export const accuracyColorMap = new Map<AccuracyEnum, string>(
     [

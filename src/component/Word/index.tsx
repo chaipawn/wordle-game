@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import Letter, { AccuracyEnum } from '../Letter'
+import Letter from '../Letter'
+import { AccuracyEnum } from "../../core/AccuracyEnum"
 
 interface WordProps {
     isWordEvaluated: boolean
